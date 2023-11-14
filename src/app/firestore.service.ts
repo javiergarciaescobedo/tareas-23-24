@@ -9,7 +9,12 @@ export class FirestoreService {
 
   constructor(private angularFirestore: AngularFirestore) { }
 
-  public insertar(coleccion:any, datos:any) {
+  public insertar(coleccion:string, datos:any) {
     return this.angularFirestore.collection(coleccion).add(datos);
   }
+
+  public consultar(coleccion:string) {
+    return this.angularFirestore.collection(coleccion).snapshotChanges();
+  }
+
 }
