@@ -14,6 +14,7 @@ export class HomePage {
     id: "",
     data: {} as Tarea
    }];
+   idTareaSelec: string = "";
 
   constructor(private firestoreService: FirestoreService) {
     this.obtenerListaTareas();
@@ -41,4 +42,16 @@ export class HomePage {
     });
   }
   
+  selecTarea(idTarea:string, tareaSelec:Tarea) {
+    this.idTareaSelec = idTarea;
+    this.tareaEditando = tareaSelec;
+  }
+
+  clicBotonBorrar() {
+    this.firestoreService.borrar("tareas", this.idTareaSelec).then(() => {
+      this.obtenerListaTareas();
+      this.tareaEditando = {} as Tarea;
+    })
+  }
+
 }
