@@ -21,4 +21,18 @@
 
   <ion-button (click)="clicBotonInsertar()">Añadir tarea</ion-button>
 
+  <h1>LISTA DE TAREAS</h1>
+  <ion-list>
+    <ion-item *ngFor="let documentTarea of arrayColeccionTareas">
+      <ion-grid>
+        <ion-row>
+          <h2>{{ documentTarea.tarea.titulo }}</h2>
+        </ion-row>
+        <ion-row>
+          <p>{{ documentTarea.tarea.descripcion }}</p>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
