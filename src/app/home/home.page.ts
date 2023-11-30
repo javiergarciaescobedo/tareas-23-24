@@ -61,4 +61,12 @@ export class HomePage {
     });
   }
 
+  clicBotonModificar() {
+    this.firestoreService.modificar("tareas", this.idTareaSelec, this.tareaEditando).then(() => {
+      console.log('Tarea modificada correctamente!');
+    }, (error) => {
+      console.error(error);
+    });
+  }
+
 }
