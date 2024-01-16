@@ -20,4 +20,8 @@ export class FirestoreService {
   public borrar(coleccion:string, documentId:string) {
     return this.angularFirestore.collection(coleccion).doc(documentId).delete();
   }
+
+  public consultarPorId(coleccion:string, documentId:string) {
+    return this.angularFirestore.collection(coleccion).doc(documentId).snapshotChanges();
+  }
 }
