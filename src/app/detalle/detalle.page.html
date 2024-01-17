@@ -11,6 +11,13 @@
     </ion-toolbar>
   </ion-header>
 
-  <p>{{ id }}</p>
-  <p>Título: {{ document.data.titulo }}</p>
+  <ion-label>Título</ion-label>
+  <ion-input [(ngModel)]="document.data.titulo"></ion-input>
+
+  <ion-label>Descripción</ion-label>
+  <ion-input [(ngModel)]="document.data.descripcion"></ion-input>
+
+  <ion-button (click)="clicBotonBorrar()">Borrar tarea</ion-button>
+  <ion-button (click)="clicBotonModificar()">Modificar tarea</ion-button>
+
 </ion-content>

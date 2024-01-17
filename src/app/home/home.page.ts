@@ -53,22 +53,4 @@ export class HomePage {
     this.router.navigate(['detalle', this.idTareaSelec]);
   }
 
-  clicBotonBorrar() {
-    this.firestoreService.borrar("tareas", this.idTareaSelec).then(() => {
-      console.log('Tarea borrada correctamente!');
-      this.tareaEditando= {} as Tarea;
-      this.idTareaSelec = "";
-    }, (error) => {
-      console.error(error);
-    });
-  }
-
-  clicBotonModificar() {
-    this.firestoreService.modificar("tareas", this.idTareaSelec, this.tareaEditando).then(() => {
-      console.log('Tarea modificada correctamente!');
-    }, (error) => {
-      console.error(error);
-    });
-  }
-
 }

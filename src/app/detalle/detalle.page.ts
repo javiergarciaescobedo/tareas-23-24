@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Tarea } from '../tarea'
 import { FirestoreService } from '../firestore.service';
 
@@ -17,7 +17,9 @@ export class DetallePage implements OnInit {
     data: {} as Tarea
   };
 
-  constructor(private activatedRoute: ActivatedRoute, private firestoreService: FirestoreService) { }
+  constructor(private activatedRoute: ActivatedRoute, 
+    private firestoreService: FirestoreService, 
+    private router: Router) { }
 
   ngOnInit() {
     // Se almacena en una variable el id que se ha recibido desde la página anterior
@@ -41,5 +43,26 @@ export class DetallePage implements OnInit {
       } 
     });
   } 
+
+  clicBotonBorrar() {
+    this.firestoreService.borrar("tareas", this.id).then(() => {
+      console.log('Tarea borrada correctamente!');
+      this.document.data= {} as Tarea;
+      this.id = "";
+    }, (error) => {
+      console.error(error);
+    });
+    this.router.navigate(['home']);
+  }
+
+  clicBotonModificar() {
+    this.firestoreService.modificar("tareas", this.id, this.document.data).then(() => {
+      console.log('Tarea modificada correctamente!');
+    }, (error) => {
+      console.error(error);
+    });
+    this.router.navigate(['home']);
+  }
+
 
 }
