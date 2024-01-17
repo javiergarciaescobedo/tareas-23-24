@@ -21,16 +21,6 @@ export class HomePage {
     this.obtenerListaTareas();
   }
 
-  clicBotonInsertar() {
-    //this.firestoreService.insertar("tareas", this.tareaEditando);
-    this.firestoreService.insertar("tareas", this.tareaEditando).then(() => {
-      console.log('Tarea creada correctamente!');
-      this.tareaEditando= {} as Tarea;
-    }, (error) => {
-      console.error(error);
-    });
-  }
-
   obtenerListaTareas() {
     // Hacer una consulta cada vez que se detectan nuevos datos en la BD
     this.firestoreService.consultar("tareas").subscribe((datosRecibidos) => {
@@ -53,4 +43,7 @@ export class HomePage {
     this.router.navigate(['detalle', this.idTareaSelec]);
   }
 
+  clicBotonInsertar() {
+    this.router.navigate(['detalle', 'nuevo']);
+  } 
 }

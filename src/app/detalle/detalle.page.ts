@@ -17,6 +17,8 @@ export class DetallePage implements OnInit {
     data: {} as Tarea
   };
 
+  accionInsertar: boolean = false;
+
   constructor(private activatedRoute: ActivatedRoute, 
     private firestoreService: FirestoreService, 
     private router: Router) { }
@@ -29,19 +31,23 @@ export class DetallePage implements OnInit {
     } else {
       this.id = "";
     }
-    // Se hace la consulta a la base de datos para obtener los datos asociados a esa id
-    this.firestoreService.consultarPorId("tareas", this.id).subscribe((resultado:any) => {
-      // Preguntar si se hay encontrado un document con ese ID
-      if(resultado.payload.data() != null) {
-        this.document.id = resultado.payload.id
-        this.document.data = resultado.payload.data();
-        // Como ejemplo, mostrar el título de la tarea en consola
-        console.log(this.document.data.titulo);
-      } else {
-        // No se ha encontrado un document con ese ID. Vaciar los datos que hubiera
-        this.document.data = {} as Tarea;
-      } 
-    });
+    if(this.id == "nuevo") {
+      this.accionInsertar = true;
+    } else {
+      // Se hace la consulta a la base de datos para obtener los datos asociados a esa id
+      this.firestoreService.consultarPorId("tareas", this.id).subscribe((resultado:any) => {
+        // Preguntar si se hay encontrado un document con ese ID
+        if(resultado.payload.data() != null) {
+          this.document.id = resultado.payload.id
+          this.document.data = resultado.payload.data();
+          // Como ejemplo, mostrar el título de la tarea en consola
+          console.log(this.document.data.titulo);
+        } else {
+          // No se ha encontrado un document con ese ID. Vaciar los datos que hubiera
+          this.document.data = {} as Tarea;
+        } 
+      });
+    }
   } 
 
   clicBotonBorrar() {
@@ -64,5 +70,14 @@ export class DetallePage implements OnInit {
     this.router.navigate(['home']);
   }
 
-
+  clicBotonInsertar() {
+    //this.firestoreService.insertar("tareas", this.tareaEditando);
+    this.firestoreService.insertar("tareas", this.document.data).then(() => {
+      console.log('Tarea creada correctamente!');
+      this.document.data= {} as Tarea;
+    }, (error) => {
+      console.error(error);
+    });
+    this.router.navigate(['home']);
+  }
 }

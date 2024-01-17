@@ -17,7 +17,8 @@
   <ion-label>Descripción</ion-label>
   <ion-input [(ngModel)]="document.data.descripcion"></ion-input>
 
-  <ion-button (click)="clicBotonBorrar()">Borrar tarea</ion-button>
-  <ion-button (click)="clicBotonModificar()">Modificar tarea</ion-button>
+  <ion-button *ngIf="accionInsertar==false" (click)="clicBotonBorrar()">Borrar tarea</ion-button>
+  <ion-button *ngIf="accionInsertar==false" (click)="clicBotonModificar()">Modificar tarea</ion-button>
+  <ion-button *ngIf="accionInsertar==true" (click)="clicBotonInsertar()">Añadir tarea</ion-button>
 
 </ion-content>
