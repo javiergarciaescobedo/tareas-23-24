@@ -17,7 +17,7 @@ export class HomePage {
   }];
   idTareaSelec: string = "";
 
-  constructor(private firestoreService: FirestoreService) {
+  constructor(private firestoreService: FirestoreService, private router: Router) {
     this.obtenerListaTareas();
   }
 
@@ -50,6 +50,7 @@ export class HomePage {
   selecTarea(idTarea:string, tareaSelec:Tarea) {
     this.tareaEditando = tareaSelec;
     this.idTareaSelec = idTarea;
+    this.router.navigate(['detalle', this.idTareaSelec]);
   }
 
   clicBotonBorrar() {
