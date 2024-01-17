@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {Tarea} from '../tarea'
+import { Tarea } from '../tarea'
 import { FirestoreService } from '../firestore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
