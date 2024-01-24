@@ -36,7 +36,7 @@ export class FirestoreService {
     return storageRef.putString(imagenBase64, 'data_url');
   }
 
-  public borrarArchivoPorURL(url:string) {
+  public eliminarArchivoPorURL(url:string) {
     return this.angularFireStorage.storage.refFromURL(url).delete();
   }
   
