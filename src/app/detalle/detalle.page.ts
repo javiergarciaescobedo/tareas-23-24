@@ -136,7 +136,7 @@ export class DetallePage implements OnInit {
       });
   }
 
-  async subirImagen(){
+  async subirImagen() {
     // Mensaje de espera mientras se sube la imagen
     const loading = await this.loadingController.create({
       message: 'Please wait...'
@@ -184,4 +184,8 @@ export class DetallePage implements OnInit {
       });
   }
 
+  clicSeleccionarImagen() {
+    this.seleccionarImagen();
+    this.subirImagen();
+  }
 }

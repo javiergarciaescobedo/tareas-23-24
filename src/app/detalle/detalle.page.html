@@ -20,6 +20,7 @@
   <ion-button id="present-alert" *ngIf="accionInsertar==false">Borrar tarea</ion-button>
   <ion-button *ngIf="accionInsertar==false" (click)="clicBotonModificar()">Modificar tarea</ion-button>
   <ion-button *ngIf="accionInsertar==true" (click)="clicBotonInsertar()">Añadir tarea</ion-button>
+  <ion-button (click)="clicSeleccionarImagen()">Seleccionar Imagen</ion-button>
   <ion-alert
     trigger="present-alert"
     header="Alert!"
