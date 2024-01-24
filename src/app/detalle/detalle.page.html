@@ -1,13 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>detalle</ion-title>
+    <ion-title>Detalle de la tarea</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">detalle</ion-title>
+      <ion-title size="large">Detalle de la tarea</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -17,8 +17,12 @@
   <ion-label>Descripción</ion-label>
   <ion-input [(ngModel)]="document.data.descripcion"></ion-input>
 
-  <ion-button *ngIf="accionInsertar==false" (click)="clicBotonBorrar()">Borrar tarea</ion-button>
+  <ion-button id="present-alert" *ngIf="accionInsertar==false">Borrar tarea</ion-button>
   <ion-button *ngIf="accionInsertar==false" (click)="clicBotonModificar()">Modificar tarea</ion-button>
   <ion-button *ngIf="accionInsertar==true" (click)="clicBotonInsertar()">Añadir tarea</ion-button>
-
+  <ion-alert
+    trigger="present-alert"
+    header="Alert!"
+    [buttons]="alertButtons"
+  ></ion-alert>
 </ion-content>

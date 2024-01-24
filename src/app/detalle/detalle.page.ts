@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Tarea } from '../tarea'
 import { FirestoreService } from '../firestore.service';
 
+import { LoadingController, ToastController } from '@ionic/angular';
+import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
+
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.page.html',
@@ -19,9 +22,28 @@ export class DetallePage implements OnInit {
 
   accionInsertar: boolean = false;
 
+  public alertButtons = [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => {
+        console.log('Alert canceled');
+      },
+    },
+    {
+      text: 'OK',
+      role: 'confirm',
+      handler: () => {
+        this.clicBotonBorrar();
+      },
+    },
+  ];
+
   constructor(private activatedRoute: ActivatedRoute, 
     private firestoreService: FirestoreService, 
-    private router: Router) { }
+    private router: Router,private loadingController: LoadingController,
+    private toastController: ToastController,
+    private imagePicker: ImagePicker) { }
 
   ngOnInit() {
     // Se almacena en una variable el id que se ha recibido desde la página anterior
