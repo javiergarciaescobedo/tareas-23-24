@@ -86,23 +86,27 @@ export class DetallePage implements OnInit {
   }
 
   clicBotonModificar() {
-    this.firestoreService.modificar("tareas", this.id, this.document.data).then(() => {
-      console.log('Tarea modificada correctamente!');
-    }, (error) => {
-      console.error(error);
+    this.subirImagen().then(() => {
+      this.firestoreService.modificar("tareas", this.id, this.document.data).then(() => {
+        console.log('Tarea modificada correctamente!');
+      }, (error) => {
+        console.error(error);
+      });
+      this.router.navigate(['home']);
     });
-    this.router.navigate(['home']);
   }
 
   clicBotonInsertar() {
-    //this.firestoreService.insertar("tareas", this.tareaEditando);
-    this.firestoreService.insertar("tareas", this.document.data).then(() => {
-      console.log('Tarea creada correctamente!');
-      this.document.data= {} as Tarea;
-    }, (error) => {
-      console.error(error);
+    this.subirImagen().then(() => {
+      //this.firestoreService.insertar("tareas", this.tareaEditando);
+      this.firestoreService.insertar("tareas", this.document.data).then(() => {
+        console.log('Tarea creada correctamente!');
+        this.document.data= {} as Tarea;
+      }, (error) => {
+        console.error(error);
+      });
+      this.router.navigate(['home']);
     });
-    this.router.navigate(['home']);
   }
 
   async seleccionarImagen() {
