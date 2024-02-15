@@ -112,7 +112,7 @@ export class DetallePage implements OnInit {
   async seleccionarImagen() {
     // Comprobar si la aplicación tiene permisos de lectura
     this.imagePicker.hasReadPermission().then(
-      (result) => {
+      (result: boolean) => {
         // Si no tiene permiso de lectura se solicita al usuario
         if(result == false){
           this.imagePicker.requestReadPermission();
@@ -123,19 +123,19 @@ export class DetallePage implements OnInit {
             maximumImagesCount: 1,  // Permitir sólo 1 imagen
             outputType: 1           // 1 = Base64
           }).then(
-            (results) => {  // En la variable results se tienen las imágenes seleccionadas
+            (results: string | any[]) => {  // En la variable results se tienen las imágenes seleccionadas
               if(results.length > 0) { // Si el usuario ha elegido alguna imagen
                 // EN LA VARIABLE imagenSelec QUEDA ALMACENADA LA IMAGEN SELECCIONADA
                 this.imagenSelec = "data:image/jpeg;base64,"+results[0]; 
                 console.log("Imagen que se ha seleccionado (en Base64): " + this.imagenSelec);
               }
             },
-            (err) => {
+            (err: any) => {
               console.log(err)
             }
           );
         }
-      }, (err) => {
+      }, (err: any) => {
         console.log(err);
       });
   }

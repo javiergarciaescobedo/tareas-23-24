@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Tarea } from '../tarea'
 import { FirestoreService } from '../firestore.service';
 import { Router } from '@angular/router';
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +18,13 @@ export class HomePage {
   }];
   idTareaSelec: string = "";
 
-  constructor(private firestoreService: FirestoreService, private router: Router) {
+  constructor(private firestoreService: FirestoreService, private router: Router, private socialSharing: SocialSharing) {
     this.obtenerListaTareas();
+    this.socialSharing.canShareViaEmail().then(() => {
+      // Sharing via email is possible
+    }).catch(() => {
+      // Sharing via email is not possible
+    });
   }
 
   obtenerListaTareas() {
