@@ -143,38 +143,41 @@ export class DetallePage implements OnInit {
   }
 
   async subirImagen() {
-    // Mensaje de espera mientras se sube la imagen
-    const loading = await this.loadingController.create({
-      message: 'Please wait...'
-    });
-    // Mensaje de finalización de subida de la imagen
-    const toast = await this.toastController.create({
-      message: 'Image was updated successfully',
-      duration: 3000
-    });
+    if(this.imagenSelec != "") {
 
-    // Carpeta del Storage donde se almacenará la imagen
-    let nombreCarpeta = "imagenes";
+      // Mensaje de espera mientras se sube la imagen
+      const loading = await this.loadingController.create({
+        message: 'Please wait...'
+      });
+      // Mensaje de finalización de subida de la imagen
+      const toast = await this.toastController.create({
+        message: 'Image was updated successfully',
+        duration: 3000
+      });
 
-    // Mostrar el mensaje de espera
-    loading.present();
-    // Asignar el nombre de la imagen en función de la hora actual para
-    //  evitar duplicidades de nombres         
-    let nombreImagen = `${new Date().getTime()}`;
-    // Llamar al método que sube la imagen al Storage
-    this.firestoreService.subirImagenBase64(nombreCarpeta, nombreImagen, this.imagenSelec)
-      .then(snapshot => {
-        snapshot.ref.getDownloadURL()
-          .then(downloadURL => {
-            // EN LA VARIABLE downloadURL SE OBTIENE LA DIRECCIÓN URL DE LA IMAGEN
-            console.log("downloadURL:" + downloadURL);
-            //this.document.data.imagenURL = downloadURL;            
-            // Mostrar el mensaje de finalización de la subida
-            toast.present();
-            // Ocultar mensaje de espera
-            loading.dismiss();
-          })
-      })    
+      // Carpeta del Storage donde se almacenará la imagen
+      let nombreCarpeta = "imagenes";
+
+      // Mostrar el mensaje de espera
+      loading.present();
+      // Asignar el nombre de la imagen en función de la hora actual para
+      //  evitar duplicidades de nombres         
+      let nombreImagen = `${new Date().getTime()}`;
+      // Llamar al método que sube la imagen al Storage
+      this.firestoreService.subirImagenBase64(nombreCarpeta, nombreImagen, this.imagenSelec)
+        .then(snapshot => {
+          snapshot.ref.getDownloadURL()
+            .then(downloadURL => {
+              // EN LA VARIABLE downloadURL SE OBTIENE LA DIRECCIÓN URL DE LA IMAGEN
+              console.log("downloadURL:" + downloadURL);
+              //this.document.data.imagenURL = downloadURL;            
+              // Mostrar el mensaje de finalización de la subida
+              toast.present();
+              // Ocultar mensaje de espera
+              loading.dismiss();
+            })
+        })    
+    }
   } 
 
   async eliminarArchivo(fileURL:string) {
