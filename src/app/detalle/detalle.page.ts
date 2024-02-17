@@ -5,6 +5,7 @@ import { FirestoreService } from '../firestore.service';
 
 import { LoadingController, ToastController } from '@ionic/angular';
 import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 
 @Component({
   selector: 'app-detalle',
@@ -45,7 +46,8 @@ export class DetallePage implements OnInit {
     private firestoreService: FirestoreService, 
     private router: Router,private loadingController: LoadingController,
     private toastController: ToastController,
-    private imagePicker: ImagePicker) { }
+    private imagePicker: ImagePicker,
+    private socialSharing: SocialSharing) { }
 
   ngOnInit() {
     // Se almacena en una variable el id que se ha recibido desde la página anterior
@@ -191,5 +193,11 @@ export class DetallePage implements OnInit {
   clicSeleccionarImagen() {
     this.seleccionarImagen();
     this.subirImagen();
+  }
+
+  clicBotonCompartir() {
+    this.socialSharing.share(
+      this.document.data.titulo + "\n" + this.document.data.descripcion, 
+      "Tarea compartida");
   }
 }
