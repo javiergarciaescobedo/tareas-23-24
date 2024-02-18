@@ -5,6 +5,7 @@ import { FirestoreService } from '../firestore.service';
 
 import { LoadingController, ToastController } from '@ionic/angular';
 import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
+//import { ImagePicker } from '@verianmobile/ionic-image-picker';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 
 @Component({

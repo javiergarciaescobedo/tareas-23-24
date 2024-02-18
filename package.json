@@ -32,7 +32,7 @@
     "@capacitor/keyboard": "5.0.6",
     "@capacitor/status-bar": "5.0.6",
     "@ionic/angular": "^7.0.0",
-    "cordova-plugin-telerik-imagepicker": "^2.3.6",
+    "cordova-plugin-telerik-imagepicker": "github:VerianMobile/ImagePicker",
     "cordova-plugin-x-socialsharing": "^6.0.4",
     "firebase": "^10.5.2",
     "ionicons": "^7.0.0",

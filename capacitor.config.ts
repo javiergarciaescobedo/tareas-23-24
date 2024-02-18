@@ -9,4 +9,13 @@ const config: CapacitorConfig = {
   }
 };
 
-export default config;
+//export default config;
+
+export default {
+  config,
+  android: {
+    permissions: {
+      READ_MEDIA_IMAGES: true
+    }
+  }
+};
